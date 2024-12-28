@@ -353,7 +353,13 @@ def custom_login_addpasskey():
                             user: {
                                 ...data.publicKey.user,
                                 id: base64URLToBuffer(data.publicKey.user.id)
-                            }
+                            },
+                            
+                            excludeCredentials: data.publicKey.excludeCredentials ? 
+                                data.publicKey.excludeCredentials.map(cred => ({
+                                    ...cred,
+                                    id: base64URLToBuffer(cred.id)
+                                })) : []
                         }
                     };
 
